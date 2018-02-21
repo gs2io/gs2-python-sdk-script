@@ -31,40 +31,13 @@ class CreateScriptRequest(Gs2BasicRequest):
         """
         super(CreateScriptRequest, self).__init__(params)
         if params is None:
-            self.__description = None
             self.__name = None
+            self.__description = None
             self.__script = None
         else:
-            self.set_description(params['description'] if 'description' in params.keys() else None)
             self.set_name(params['name'] if 'name' in params.keys() else None)
+            self.set_description(params['description'] if 'description' in params.keys() else None)
             self.set_script(params['script'] if 'script' in params.keys() else None)
-
-    def get_description(self):
-        """
-        説明文を取得
-        :return: 説明文
-        :rtype: unicode
-        """
-        return self.__description
-
-    def set_description(self, description):
-        """
-        説明文を設定
-        :param description: 説明文
-        :type description: unicode
-        """
-        self.__description = description
-
-    def with_description(self, description):
-        """
-        説明文を設定
-        :param description: 説明文
-        :type description: unicode
-        :return: this
-        :rtype: CreateScriptRequest
-        """
-        self.set_description(description)
-        return self
 
     def get_name(self):
         """
@@ -91,6 +64,33 @@ class CreateScriptRequest(Gs2BasicRequest):
         :rtype: CreateScriptRequest
         """
         self.set_name(name)
+        return self
+
+    def get_description(self):
+        """
+        説明文を取得
+        :return: 説明文
+        :rtype: unicode
+        """
+        return self.__description
+
+    def set_description(self, description):
+        """
+        説明文を設定
+        :param description: 説明文
+        :type description: unicode
+        """
+        self.__description = description
+
+    def with_description(self, description):
+        """
+        説明文を設定
+        :param description: 説明文
+        :type description: unicode
+        :return: this
+        :rtype: CreateScriptRequest
+        """
+        self.set_description(description)
         return self
 
     def get_script(self):

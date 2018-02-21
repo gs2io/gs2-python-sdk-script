@@ -19,20 +19,20 @@ class Script(object):
     def __init__(self, params=None):
         if params is None:
             self.__script_id = None
-            self.__create_at = None
-            self.__name = None
-            self.__script = None
             self.__owner_id = None
-            self.__update_at = None
+            self.__name = None
             self.__description = None
+            self.__script = None
+            self.__create_at = None
+            self.__update_at = None
         else:
             self.set_script_id(params['scriptId'] if 'scriptId' in params.keys() else None)
-            self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
-            self.set_name(params['name'] if 'name' in params.keys() else None)
-            self.set_script(params['script'] if 'script' in params.keys() else None)
             self.set_owner_id(params['ownerId'] if 'ownerId' in params.keys() else None)
-            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
+            self.set_name(params['name'] if 'name' in params.keys() else None)
             self.set_description(params['description'] if 'description' in params.keys() else None)
+            self.set_script(params['script'] if 'script' in params.keys() else None)
+            self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
+            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
 
 
     def get_script_id(self):
@@ -51,21 +51,21 @@ class Script(object):
         """
         self.__script_id = script_id
 
-    def get_create_at(self):
+    def get_owner_id(self):
         """
-        作成日時(エポック秒)を取得
-        :return: 作成日時(エポック秒)
-        :rtype: int
+        オーナーIDを取得
+        :return: オーナーID
+        :rtype: unicode
         """
-        return self.__create_at
+        return self.__owner_id
 
-    def set_create_at(self, create_at):
+    def set_owner_id(self, owner_id):
         """
-        作成日時(エポック秒)を設定
-        :param create_at: 作成日時(エポック秒)
-        :type create_at: int
+        オーナーIDを設定
+        :param owner_id: オーナーID
+        :type owner_id: unicode
         """
-        self.__create_at = create_at
+        self.__owner_id = owner_id
 
     def get_name(self):
         """
@@ -83,6 +83,22 @@ class Script(object):
         """
         self.__name = name
 
+    def get_description(self):
+        """
+        説明文を取得
+        :return: 説明文
+        :rtype: unicode
+        """
+        return self.__description
+
+    def set_description(self, description):
+        """
+        説明文を設定
+        :param description: 説明文
+        :type description: unicode
+        """
+        self.__description = description
+
     def get_script(self):
         """
         スクリプトデータを取得
@@ -99,21 +115,21 @@ class Script(object):
         """
         self.__script = script
 
-    def get_owner_id(self):
+    def get_create_at(self):
         """
-        オーナーIDを取得
-        :return: オーナーID
-        :rtype: unicode
+        作成日時(エポック秒)を取得
+        :return: 作成日時(エポック秒)
+        :rtype: int
         """
-        return self.__owner_id
+        return self.__create_at
 
-    def set_owner_id(self, owner_id):
+    def set_create_at(self, create_at):
         """
-        オーナーIDを設定
-        :param owner_id: オーナーID
-        :type owner_id: unicode
+        作成日時(エポック秒)を設定
+        :param create_at: 作成日時(エポック秒)
+        :type create_at: int
         """
-        self.__owner_id = owner_id
+        self.__create_at = create_at
 
     def get_update_at(self):
         """
@@ -131,29 +147,13 @@ class Script(object):
         """
         self.__update_at = update_at
 
-    def get_description(self):
-        """
-        説明文を取得
-        :return: 説明文
-        :rtype: unicode
-        """
-        return self.__description
-
-    def set_description(self, description):
-        """
-        説明文を設定
-        :param description: 説明文
-        :type description: unicode
-        """
-        self.__description = description
-
     def to_dict(self):
         return { 
             "scriptId": self.__script_id,
-            "createAt": self.__create_at,
-            "name": self.__name,
-            "script": self.__script,
             "ownerId": self.__owner_id,
-            "updateAt": self.__update_at,
+            "name": self.__name,
             "description": self.__description,
+            "script": self.__script,
+            "createAt": self.__create_at,
+            "updateAt": self.__update_at,
         }
