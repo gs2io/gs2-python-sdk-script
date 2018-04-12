@@ -32,11 +32,15 @@ class CreateScriptRequest(Gs2BasicRequest):
         super(CreateScriptRequest, self).__init__(params)
         if params is None:
             self.__name = None
-            self.__description = None
-            self.__script = None
         else:
             self.set_name(params['name'] if 'name' in params.keys() else None)
+        if params is None:
+            self.__description = None
+        else:
             self.set_description(params['description'] if 'description' in params.keys() else None)
+        if params is None:
+            self.__script = None
+        else:
             self.set_script(params['script'] if 'script' in params.keys() else None)
 
     def get_name(self):
@@ -53,6 +57,8 @@ class CreateScriptRequest(Gs2BasicRequest):
         :param name: スクリプトの名前
         :type name: unicode
         """
+        if not isinstance(name, unicode):
+            raise TypeError(type(name))
         self.__name = name
 
     def with_name(self, name):
@@ -80,6 +86,8 @@ class CreateScriptRequest(Gs2BasicRequest):
         :param description: 説明文
         :type description: unicode
         """
+        if not isinstance(description, unicode):
+            raise TypeError(type(description))
         self.__description = description
 
     def with_description(self, description):
@@ -107,6 +115,8 @@ class CreateScriptRequest(Gs2BasicRequest):
         :param script: Luaスクリプト
         :type script: unicode
         """
+        if not isinstance(script, unicode):
+            raise TypeError(type(script))
         self.__script = script
 
     def with_script(self, script):

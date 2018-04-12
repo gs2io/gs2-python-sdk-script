@@ -32,11 +32,15 @@ class UpdateScriptRequest(Gs2BasicRequest):
         super(UpdateScriptRequest, self).__init__(params)
         if params is None:
             self.__script_name = None
-            self.__description = None
-            self.__script = None
         else:
             self.set_script_name(params['scriptName'] if 'scriptName' in params.keys() else None)
+        if params is None:
+            self.__description = None
+        else:
             self.set_description(params['description'] if 'description' in params.keys() else None)
+        if params is None:
+            self.__script = None
+        else:
             self.set_script(params['script'] if 'script' in params.keys() else None)
 
     def get_script_name(self):
@@ -53,6 +57,8 @@ class UpdateScriptRequest(Gs2BasicRequest):
         :param script_name: スクリプトの名前を指定します。
         :type script_name: unicode
         """
+        if not isinstance(script_name, unicode):
+            raise TypeError(type(script_name))
         self.__script_name = script_name
 
     def with_script_name(self, script_name):
@@ -80,6 +86,8 @@ class UpdateScriptRequest(Gs2BasicRequest):
         :param description: 説明文
         :type description: unicode
         """
+        if not isinstance(description, unicode):
+            raise TypeError(type(description))
         self.__description = description
 
     def with_description(self, description):
@@ -107,6 +115,8 @@ class UpdateScriptRequest(Gs2BasicRequest):
         :param script: Luaスクリプト
         :type script: unicode
         """
+        if not isinstance(script, unicode):
+            raise TypeError(type(script))
         self.__script = script
 
     def with_script(self, script):

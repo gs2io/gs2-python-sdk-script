@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class Script(object):
 
     def __init__(self, params=None):
@@ -33,7 +34,6 @@ class Script(object):
             self.set_script(params['script'] if 'script' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
             self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
-
 
     def get_script_id(self):
         """
@@ -148,7 +148,7 @@ class Script(object):
         self.__update_at = update_at
 
     def to_dict(self):
-        return { 
+        return {
             "scriptId": self.__script_id,
             "ownerId": self.__owner_id,
             "name": self.__name,
