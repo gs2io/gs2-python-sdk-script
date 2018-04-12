@@ -49,7 +49,7 @@ class DeleteScriptRequest(Gs2BasicRequest):
         :param script_name: スクリプトの名前を指定します。
         :type script_name: unicode
         """
-        if not isinstance(script_name, unicode):
+        if script_name and not isinstance(script_name, unicode):
             raise TypeError(type(script_name))
         self.__script_name = script_name
 
