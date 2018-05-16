@@ -43,10 +43,11 @@ class Gs2ScriptClient(AbstractGs2Client):
         """
         body = { 
             "name": request.get_name(),
-            "description": request.get_description(),
             "script": request.get_script(),
         }
 
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
         headers = { 
         }
         if request.get_request_id() is not None:
