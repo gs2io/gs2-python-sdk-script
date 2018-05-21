@@ -16,6 +16,7 @@
 
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
+from aws_sdk_for_serverless.common import url_encoder
 
 
 class Gs2ScriptClient(AbstractGs2Client):
@@ -77,7 +78,7 @@ class Gs2ScriptClient(AbstractGs2Client):
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_script_client.control.DeleteScriptRequest import DeleteScriptRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else request.get_script_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else url_encoder.encode(request.get_script_name()))) + "",
             service=self.ENDPOINT,
             component=DeleteScriptRequest.Constant.MODULE,
             target_function=DeleteScriptRequest.Constant.FUNCTION,
@@ -131,7 +132,7 @@ class Gs2ScriptClient(AbstractGs2Client):
 
         from gs2_script_client.control.GetScriptResult import GetScriptResult
         return GetScriptResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else request.get_script_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else url_encoder.encode(request.get_script_name()))) + "",
             service=self.ENDPOINT,
             component=GetScriptRequest.Constant.MODULE,
             target_function=GetScriptRequest.Constant.FUNCTION,
@@ -161,7 +162,7 @@ class Gs2ScriptClient(AbstractGs2Client):
         from gs2_script_client.control.UpdateScriptRequest import UpdateScriptRequest
         from gs2_script_client.control.UpdateScriptResult import UpdateScriptResult
         return UpdateScriptResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else request.get_script_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else url_encoder.encode(request.get_script_name()))) + "",
             service=self.ENDPOINT,
             component=UpdateScriptRequest.Constant.MODULE,
             target_function=UpdateScriptRequest.Constant.FUNCTION,
