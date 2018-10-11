@@ -57,7 +57,7 @@ class CreateScriptRequest(Gs2BasicRequest):
         :param name: スクリプトの名前
         :type name: unicode
         """
-        if name and not (isinstance(name, str) or isinstance(name, unicode)):
+        if name is not None and not (isinstance(name, str) or isinstance(name, unicode)):
             raise TypeError(type(name))
         self.__name = name
 
@@ -86,7 +86,7 @@ class CreateScriptRequest(Gs2BasicRequest):
         :param description: 説明文
         :type description: unicode
         """
-        if description and not (isinstance(description, str) or isinstance(description, unicode)):
+        if description is not None and not (isinstance(description, str) or isinstance(description, unicode)):
             raise TypeError(type(description))
         self.__description = description
 
@@ -115,7 +115,7 @@ class CreateScriptRequest(Gs2BasicRequest):
         :param script: Luaスクリプト
         :type script: unicode
         """
-        if script and not (isinstance(script, str) or isinstance(script, unicode)):
+        if script is not None and not (isinstance(script, str) or isinstance(script, unicode)):
             raise TypeError(type(script))
         self.__script = script
 

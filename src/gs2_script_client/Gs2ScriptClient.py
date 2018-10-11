@@ -49,8 +49,7 @@ class Gs2ScriptClient(AbstractGs2Client):
 
         if request.get_description() is not None:
             body["description"] = request.get_description()
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_script_client.control.CreateScriptRequest import CreateScriptRequest
@@ -72,13 +71,12 @@ class Gs2ScriptClient(AbstractGs2Client):
         :type request: gs2_script_client.control.DeleteScriptRequest.DeleteScriptRequest
         """
         query_strings = {}
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_script_client.control.DeleteScriptRequest import DeleteScriptRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else url_encoder.encode(request.get_script_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else request.get_script_name())) + "",
             service=self.ENDPOINT,
             component=DeleteScriptRequest.Constant.MODULE,
             target_function=DeleteScriptRequest.Constant.FUNCTION,
@@ -94,12 +92,12 @@ class Gs2ScriptClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_script_client.control.DescribeScriptResult.DescribeScriptResult
         """
-        query_strings = {
-            'pageToken': request.get_page_token(),
-            'limit': request.get_limit(),
-        }
-        headers = { 
-        }
+        query_strings = {}
+        if request.get_page_token() is not None:
+            query_strings['pageToken'] = request.get_page_token()
+        if request.get_limit() is not None:
+            query_strings['limit'] = request.get_limit()
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_script_client.control.DescribeScriptRequest import DescribeScriptRequest
@@ -122,17 +120,15 @@ class Gs2ScriptClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_script_client.control.GetScriptResult.GetScriptResult
         """
-        query_strings = {
-        }
-        headers = { 
-        }
+        query_strings = {}
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_script_client.control.GetScriptRequest import GetScriptRequest
 
         from gs2_script_client.control.GetScriptResult import GetScriptResult
         return GetScriptResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else url_encoder.encode(request.get_script_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else request.get_script_name())) + "",
             service=self.ENDPOINT,
             component=GetScriptRequest.Constant.MODULE,
             target_function=GetScriptRequest.Constant.FUNCTION,
@@ -155,14 +151,13 @@ class Gs2ScriptClient(AbstractGs2Client):
             body["description"] = request.get_description()
         if request.get_script() is not None:
             body["script"] = request.get_script()
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_script_client.control.UpdateScriptRequest import UpdateScriptRequest
         from gs2_script_client.control.UpdateScriptResult import UpdateScriptResult
         return UpdateScriptResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else url_encoder.encode(request.get_script_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/script/" + str(("null" if request.get_script_name() is None or request.get_script_name() == "" else request.get_script_name())) + "",
             service=self.ENDPOINT,
             component=UpdateScriptRequest.Constant.MODULE,
             target_function=UpdateScriptRequest.Constant.FUNCTION,
